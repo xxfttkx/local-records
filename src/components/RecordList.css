@@ -1,0 +1,41 @@
+.records-list {
+    display: flex;
+    flex-direction: column;
+    /* 列排列 */
+    gap: 1rem;
+    /* 每个 record 之间的间距 */
+    margin: 1rem;
+    /* 列表的外边距 */
+    padding: 1rem;
+    /* 列表的内边距 */
+    border: 1px solid #ccc;
+    /* 列表外框 */
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    /* 背景色 */
+}
+
+.record-item {
+    display: flex;
+    justify-content: space-between;
+    /* 两端对齐 */
+    align-items: center;
+    /* 垂直居中 */
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    transition: transform 0.2s, box-shadow 0.2s;
+    /* 动态效果 */
+}
+
+.record-item:hover {
+    transform: scale(1.02);
+    /* 鼠标悬浮放大效果 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.record-actions button {
+    margin-left: 0.5rem;
+    /* 按钮之间的间距 */
+}

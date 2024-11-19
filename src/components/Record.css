@@ -1,0 +1,19 @@
+/* CSS */
+.record-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+  }
+  
+  .record-container h3 {
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .record-container p {
+    font-size: 14px;
+    color: #666;
+  }
+  
