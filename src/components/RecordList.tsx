@@ -10,6 +10,7 @@ interface RecordListProps {
 
 const RecordList: React.FC<RecordListProps> = ({ records, onUpdate }) => {
   const [expandedRecord, setExpandedRecord] = useState<string | null>(null);
+  const recordLists = records.slice().reverse();
 
   const toggleExpand = (key: string) => {
     setExpandedRecord(key);
@@ -17,7 +18,7 @@ const RecordList: React.FC<RecordListProps> = ({ records, onUpdate }) => {
 
   return (
     <div className="records-list">
-      {records.map((record, index) => (
+      {recordLists.map((record, index) => (
         <div
           key={record.key}
           className={`record-item ${expandedRecord === record.key ? "expanded" : ""}`}

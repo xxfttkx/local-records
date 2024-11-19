@@ -41,23 +41,15 @@ class RecordManager {
     // 更新记录
     async updateRecord(index: number, record: RecordContent): Promise<boolean> {
         if (index < this.records.length) {
-            invoke('log_string', { s: "key: " + record.key + "||" + this.records[index].key });
-            if (record.key != this.records[index].key) {
-                if (this.hasKey(record.key)) {
-                    return false;
-                }
-                else {
-                    this.keysSet.delete(this.records[index].key);
-                    this.keysSet.add(record.key);
-                    this.records[index] = record;
-                    return true;
-                }
+            invoke('log_string', { s: "key: " + record.key + "-" + this.records[index].key + "||" + index+ "-" + this.records.length});
+            if (record.key != this.records[index].key && this.hasKey(record.key)) {
+                return false;
             }
             else {
-                this.records[index] = record;
-                invoke('log_string', { s: "records update" });
-                await this.saveToJson();
-                return true;
+                this.keysSet.delete(this.records[index].key);
+                this.records.splice(index, 1);
+                var res = await this.addRecord(record)
+                return res;
             }
         }
         invoke('log_string', { s: "updateRecord false; index: " + index + "|" + this.records.length });

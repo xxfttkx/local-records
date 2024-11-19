@@ -48,6 +48,7 @@ const App: React.FC = () => {
    // 修改记录
   const handleUpdateRecord = async (updatedRecord: RecordContent, index: number):Promise<boolean> => {
     invoke('log_string',{s: 'handleUpdateRecord'});
+    index = records.length - 1 - index;
     const res = await recordManager.updateRecord(index, updatedRecord); // 使用 RecordManager 更新记录
     if(res){
       setRecords(recordManager.getRecords());
