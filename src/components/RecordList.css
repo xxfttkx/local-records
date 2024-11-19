@@ -16,6 +16,7 @@
 }
 
 .record-item {
+    height: 40px; /* 设置高度 */
     display: flex;
     justify-content: space-between;
     /* 两端对齐 */
@@ -39,3 +40,20 @@
     margin-left: 0.5rem;
     /* 按钮之间的间距 */
 }
+
+.record-item.expanded {
+    background-color: #f9f9f9;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* 半透明遮罩 */
+    z-index: 999;
+    /* 确保遮罩层位于最上层 */
+}
+  

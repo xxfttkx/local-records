@@ -59,10 +59,8 @@ const AddRecord: React.FC<AddRecordProps> = ({ onTryAdd, onClose }) => {
               ></textarea>
             </label>
           </div>
+          <button type="button" onClick={onClose}>取消</button>
           <button type="submit">添加记录</button>
-          <button type="button" onClick={onClose}>
-            取消
-          </button>
         </form>
       </div>
     </div>

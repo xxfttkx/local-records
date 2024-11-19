@@ -19,23 +19,15 @@ const App: React.FC = () => {
   useEffect(() => {
     path.appLocalDataDir().then((dir) => {
       invoke('log_string', { s: 'App Local Data Directory:' + dir }).then();
-      recordManager.loadFromJson().then((data)=>{setRecords(data??[]);invoke('log_string',{s: 'useEffect || recordManager: '+ recordManager.getRecords().length});}); // 从 JSON 文件加载数据
+      recordManager.loadFromJson().then((data)=>{setRecords(data??[]);}); // 从 JSON 文件加载数据
       
     }).catch((error) => {
       invoke('log_string',{s: 'Error fetching app local data directory:' + error});
     });
   }, []); // 只加载一次
 
-  // 保存数据
-  const saveRecords = async () => {
-    await recordManager.saveToJson(); // 将记录保存到 JSON 文件
-  };
-
   // 添加新记录的处理函数
   const handleAddRecord = async (newRecord: RecordContent):Promise<boolean> => {
-    // await recordManager.loadFromJson(); // 必要，为什么
-    invoke('log_string',{s: 'handleAddRecord || curr_records_length: '+ records.length});
-    invoke('log_string',{s: 'handleAddRecord || recordManager: '+ recordManager.getRecords().length});
     if(recordManager.addRecord(newRecord)){
       setRecords(recordManager.getRecords());
       return true;
@@ -54,14 +46,14 @@ const App: React.FC = () => {
   }
 
    // 修改记录
-  const handleUpdateRecord = (updatedRecord: RecordContent) => {
+  const handleUpdateRecord = async (updatedRecord: RecordContent, index: number):Promise<boolean> => {
     invoke('log_string',{s: 'handleUpdateRecord'});
-    recordManager.updateRecord(updatedRecord.key, updatedRecord.value); // 使用 RecordManager 更新记录
-    const updatedRecords = records.map((record) =>
-      record.key === updatedRecord.key ? updatedRecord : record
-    );
-    setRecords(updatedRecords);
-    saveRecords(); // 保存到本地
+    const res = await recordManager.updateRecord(index, updatedRecord); // 使用 RecordManager 更新记录
+    if(res){
+      setRecords(recordManager.getRecords());
+      return true;
+    }
+    return false;
   };
 
   return (

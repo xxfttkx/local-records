@@ -1,0 +1,39 @@
+.record-details-modal {
+    position: fixed;
+    /* 固定在屏幕上 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* 覆盖整个屏幕 */
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* 半透明背景 */
+    display: flex;
+    justify-content: center;
+    /* 内容水平居中 */
+    align-items: center;
+    /* 内容垂直居中 */
+    z-index: 1000;
+    /* 确保位于最前层 */
+}
+
+.record-details-content {
+    background-color: #fff;
+    /* 白色背景 */
+    padding: 20px;
+    /* 内边距 */
+    border-radius: 8px;
+    /* 圆角 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* 阴影效果 */
+    max-width: 400px;
+    /* 最大宽度 */
+    width: 100%;
+    /* 自适应宽度 */
+}
+
+
+.record-details-content div {
+    margin-bottom: 20px;
+    /* 调整间距，20px 是一个例子，可以更改为你需要的值 */
+}
